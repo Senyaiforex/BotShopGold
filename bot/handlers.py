@@ -14,7 +14,7 @@ router = Router()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-ADMIN_ID = 8916970501
+ADMIN_ID = 8335431482
 
 
 @router.message(Command("start"))
