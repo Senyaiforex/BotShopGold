@@ -16,12 +16,6 @@ logger.setLevel(logging.INFO)
 
 ADMIN_ID = 8335431482
 
-@router.message(F.photo)
-async def get_photo_id(message: types.Message):
-    await message.answer(
-        message.photo[-1].file_id
-    )
-
 @router.message(Command("start"))
 async def start_command(message: types.Message, state: FSMContext):
     """
