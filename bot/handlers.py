@@ -16,6 +16,11 @@ logger.setLevel(logging.INFO)
 
 ADMIN_ID = 8335431482
 
+@router.message(F.photo)
+async def get_photo_id(message: types.Message):
+    await message.answer(
+        message.photo[-1].file_id
+    )
 
 @router.message(Command("start"))
 async def start_command(message: types.Message, state: FSMContext):
@@ -30,7 +35,7 @@ async def start_command(message: types.Message, state: FSMContext):
             caption=txt_handlers.welcome_text,
             reply_markup=await buy_keyboard(),
             parse_mode='Markdown',
-            photo=FSInputFile("bot.jpg")
+            photo="AgACAgIAAxkBAANTas_RXT0-z5D9uGDBA_mjE_vS2OcAAoYfaxsx44FK6XthOBEkvrcBAAMCAAN5AAM9BA"
     )
 
 @router.message(Command("admin"))
@@ -63,7 +68,7 @@ async def menu_callback(callback_query: CallbackQuery, state: FSMContext):
     with suppress(AiogramError):
         await callback_query.message.delete()
     await callback_query.message.answer_photo(caption=txt_handlers.welcome_text,
-                                              photo=FSInputFile("bot.jpg"),
+                                              photo="AgACAgIAAxkBAANTas_RXT0-z5D9uGDBA_mjE_vS2OcAAoYfaxsx44FK6XthOBEkvrcBAAMCAAN5AAM9BA",
                                         reply_markup=await buy_keyboard(), parse_mode='Markdown')
 
 @router.callback_query(lambda c: c.data == 'admin-menu')
@@ -181,7 +186,8 @@ async def send_screen_processing(message: types.Message, state: FSMContext):
     await message.answer_photo(caption="Ваша оплата проверяется! "
                                        "Пожалуйста, ожидайте окончания проверки\n\n"
                                        "Мы оповестим Вас по окончании проверки",
-                               photo=FSInputFile("answer.jpg"))
+                               photo="AgACAgIAAxkBAANRas_RCl7rGlqln5iNFd3MTQkjbd"
+                                     "cAAoIfaxsx44FK5qjMtuaYku4BAAMCAAN5AAM9BA")
 
 
 
